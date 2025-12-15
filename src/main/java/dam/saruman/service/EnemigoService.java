@@ -24,6 +24,11 @@ public class EnemigoService {
     }
 
     public Enemigo crearEnemigo(Enemigo enemigo) {
+        // Compruebo si ya hay un enemigo con ese nombre
+        List<Enemigo> enemigoExistente = enemigoRepository.findByNombre(enemigo.getNombre());
+        if(!enemigoExistente.isEmpty()) {
+            throw new IllegalArgumentException("Ya existe un enemigo con el nombre: " + enemigo.getNombre());
+        }
         return enemigoRepository.save(enemigo);
     }
 
@@ -42,5 +47,16 @@ public class EnemigoService {
     // Cambiado Long a String
     public void eliminarEnemigo(String id) {
         enemigoRepository.deleteById(id);
+    }
+
+    public List<Enemigo> buscarPorNombre(String nombre) {
+        return enemigoRepository.findByNombre(nombre);
+    }
+
+    public List<Enemigo> obtenerEnemigosOrdenados() {
+        List<Enemigo> enemigos = enemigoRepository.findAll();
+        // Los ordeno por nombre alfabéticamente
+        enemigos.sort((e1, e2) -> e1.getNombre().compareToIgnoreCase(e2.getNombre()));
+        return enemigos;
     }
 }

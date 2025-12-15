@@ -2,6 +2,9 @@ package dam.saruman.entity;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.index.Indexed;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
 // @Document marca esta clase como un documento de MongoDB (equivalente a @Entity en JPA)
 // "enemigosdelestado" es el nombre de la colección en MongoDB (equivalente a una tabla en SQL)
@@ -10,8 +13,12 @@ public class Enemigo {
     @Id // En MongoDB, el _id es de tipo String por defecto
     private String id;
 
-    // En MongoDB no necesitamos @Column, los campos se guardan automáticamente
+    // El nombre no puede estar vacío y debe tener mínimo 3 caracteres
+    @NotBlank(message = "El nombre no puede estar vacío")
+    @Size(min = 3, message = "El nombre debe tener al menos 3 caracteres")
+    @Indexed(unique = true) // Para que no haya nombres repetidos
     private String nombre;
+
     private String afiliacionpolitica;
     private String pais;
 
