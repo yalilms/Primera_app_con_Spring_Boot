@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saruman - Registro de Enemigos</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Saruman - Registro de Enemigos del Estado</h1>
+
+    <div class="container">
+        <div class="form-section">
+            <h2 id="formTitle">Agregar Nuevo Enemigo</h2>
+            <form id="enemigoForm">
+                <input type="hidden" id="enemigoId">
+                <div class="form-group">
+                    <label for="nombre">Nombre:</label>
+                    <input type="text" id="nombre" name="nombre" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="afiliacionpolitica">Afiliación Política:</label>
+                    <input type="text" id="afiliacionpolitica" name="afiliacionpolitica" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="pais">País:</label>
+                    <input type="text" id="pais" name="pais" required>
+                </div>
+
+                <button type="submit" class="btn-submit" id="submitBtn">Agregar Enemigo</button>
+                <button type="button" class="btn-cancel" id="cancelBtn" style="display:none;">Cancelar</button>
+            </form>
+            <div id="mensaje" class="mensaje"></div>
+        </div>
+
+        <div class="table-section">
+            <h2>Lista de Enemigos</h2>
+            <table id="usuariosTable" style="display:none;">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Afiliación Política</th>
+                    <th>País</th>
+                    <th>Acciones</th>
+                </tr>
+                </thead>
+                <tbody id="enemigosBody"></tbody>
+            </table>
+            <p id="noData" style="text-align: center; color: #666;">No hay enemigos registrados</p>
+        </div>
+    </div>
+
+    <script src=script.js></script>
+</body>
+</html>
