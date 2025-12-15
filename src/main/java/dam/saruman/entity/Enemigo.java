@@ -1,38 +1,36 @@
 package dam.saruman.entity;
 
-import jakarta.persistence.*;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-@Entity
-@Table(name="enemigosdelestado")
+// @Document marca esta clase como un documento de MongoDB (equivalente a @Entity en JPA)
+// "enemigosdelestado" es el nombre de la colección en MongoDB (equivalente a una tabla en SQL)
+@Document(collection = "enemigosdelestado")
 public class Enemigo {
-    @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private Long id;
+    @Id // En MongoDB, el _id es de tipo String por defecto
+    private String id;
 
-    @Column
+    // En MongoDB no necesitamos @Column, los campos se guardan automáticamente
     private String nombre;
-
-    @Column
     private String afiliacionpolitica;
-
-    @Column
     private String pais;
 
     public Enemigo() {
     }
 
-    public Enemigo(Long id, String nombre, String afiliacionpolitica, String pais) {
+    // Constructor con todos los parámetros - id ahora es String
+    public Enemigo(String id, String nombre, String afiliacionpolitica, String pais) {
         this.id = id;
         this.nombre = nombre;
         this.afiliacionpolitica = afiliacionpolitica;
         this.pais = pais;
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 

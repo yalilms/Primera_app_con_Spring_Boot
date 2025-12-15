@@ -23,13 +23,15 @@ public class EnemigoController {
         return enemigoService.crearEnemigo(enemigo);
     }
 
+    // Cambiado Long a String para MongoDB
     @PutMapping("/enemigo/{id}")
-    public Enemigo actualizarEnemigo(@PathVariable Long id, @RequestBody Enemigo enemigo) {
+    public Enemigo actualizarEnemigo(@PathVariable String id, @RequestBody Enemigo enemigo) {
         return enemigoService.actualizarEnemigo(id, enemigo);
     }
 
+    // Cambiado Long a String para MongoDB
     @DeleteMapping("/enemigo/{id}")
-    public void eliminarEnemigo(@PathVariable Long id) {
+    public void eliminarEnemigo(@PathVariable String id) {
         enemigoService.eliminarEnemigo(id);
     }
 }

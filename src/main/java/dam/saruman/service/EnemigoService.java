@@ -27,7 +27,8 @@ public class EnemigoService {
         return enemigoRepository.save(enemigo);
     }
 
-    public Enemigo actualizarEnemigo(Long id, Enemigo enemigo) {
+    // Cambiado Long a String porque el id en MongoDB es String
+    public Enemigo actualizarEnemigo(String id, Enemigo enemigo) {
         Enemigo enemigoExistente = enemigoRepository.findById(id).orElse(null);
         if(enemigoExistente != null) {
             enemigoExistente.setNombre(enemigo.getNombre());
@@ -38,7 +39,8 @@ public class EnemigoService {
         return null;
     }
 
-    public void eliminarEnemigo(Long id) {
+    // Cambiado Long a String
+    public void eliminarEnemigo(String id) {
         enemigoRepository.deleteById(id);
     }
 }
